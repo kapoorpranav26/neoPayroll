@@ -10,15 +10,6 @@
 
 ---
 
-## 📖 Complete Documentation & Viva Defense
-
-- 📑 **Comprehensive Academic Project Report:** [`PROJECT_DOCUMENTATION.md`](./PROJECT_DOCUMENTATION.md)  
-  *(Includes Legacy System Analysis, System Architecture, Technology Justifications, Mermaid ER & Sequence Diagrams, Full REST API Specification, and Test Matrices).*
-- 🎓 **Oral Defense & Viva-Voce Cheat Sheet:** [`VIVA_GUIDE.md`](./VIVA_GUIDE.md)  
-  *(Includes 60-Second Elevator Pitch, 7-Step Live Demonstration Script, and Top 19 Technical Viva Questions & Direct Answers).*
-
----
-
 ## 🔄 Re-Engineering Case Study & Origin
 
 This project is a complete modern re-engineering of the open-source **Employees Payroll Management System** authored by **Smohanta23** ([GitHub Repository](https://github.com/Smohanta23/Payroll_Mgmt_System)).
@@ -60,7 +51,6 @@ Simply double-click or run the included launcher:
 This concurrently boots both servers:
 - 🌐 **Frontend UI:** [http://localhost:5173](http://localhost:5173)
 - ⚙️ **Backend API:** [http://127.0.0.1:8000](http://127.0.0.1:8000)
-- 📚 **Interactive Swagger API Docs:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ---
 
@@ -70,7 +60,7 @@ This concurrently boots both servers:
 ```bash
 cd backend
 python -m venv venv
-.\venv\Scripts\activate   # On Windows (use `source venv/bin/activate` on Linux/macOS)
+.\venv\Scripts\activate   
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
@@ -89,28 +79,22 @@ npm run dev
 ```
 reengineered-payroll/
 ├── backend/
-│   ├── database.py           # SQLite connection and session management
-│   ├── models.py             # SQLAlchemy ORM database models
-│   ├── schemas.py            # Pydantic data schemas & request validation
-│   ├── crud.py               # Database queries, updates, and cascade deletion
-│   ├── main.py               # FastAPI application routes & CORS middleware
-│   ├── requirements.txt      # Python package dependencies
-│   └── payroll.db            # SQLite database file
+│   ├── database.py           
+│   ├── models.py             
+│   ├── schemas.py            
+│   ├── crud.py               
+│   ├── main.py               
+│   ├── requirements.txt      
+│   └── payroll.db            
 ├── frontend/
 │   ├── src/
-│   │   ├── components/       # Dashboard, EmployeeList, Attendance, LeaveManagement, Payroll, Login
-│   │   ├── App.jsx           # Root router, corporate sidebar, authentication state
-│   │   ├── index.css         # Modern Stripe/Tailwind corporate design system
-│   │   └── main.jsx          # React DOM entry point
-│   ├── package.json          # Frontend dependencies & scripts
-│   └── vite.config.js        # Vite configuration
-├── PROJECT_DOCUMENTATION.md  # Detailed practical report, ER diagrams, test matrix
-├── VIVA_GUIDE.md             # Oral defense guide, live demo script, 18 viva Q&As
-├── start.bat                 # One-click startup automation
-└── README.md                 # Project landing page
+│   │   ├── components/       
+│   │   ├── App.jsx           
+│   │   ├── index.css         
+│   │   └── main.jsx          
+│   ├── package.json          
+│   └── vite.config.js        
+├── PROJECT_DOCUMENTATION.md              
+├── start.bat                 
+└── README.md                 
 ```
-
----
-
-## 📝 Practical Examination & Viva Voce
-Developed for college practical assessment and project demonstration. Refer to [`VIVA_GUIDE.md`](./VIVA_GUIDE.md) for demonstration preparation and examiners' technical questions.
