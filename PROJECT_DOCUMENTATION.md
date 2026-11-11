@@ -12,7 +12,7 @@
 | **Backend Framework** | Python 3.10+ / FastAPI / SQLAlchemy ORM / Pydantic |
 | **Frontend Framework** | React 19 / Vite / React Router DOM / Recharts / jsPDF |
 | **Database** | SQLite3 Relational Database |
-| **Styling & UI** | Responsive Custom Design System with Dark/Light Glassmorphism |
+| **Styling & UI** | Responsive Corporate SaaS Design System (Light/Dark Themes) |
 | **API Architecture** | RESTful API with automated OpenAPI 3.0 / Swagger UI |
 | **Target Evaluation** | Practical Examination / Laboratory Project Viva-Voce Submission |
 
@@ -21,17 +21,15 @@
 ## 📑 Table of Contents
 
 1. [Executive Summary & Abstract](#1-executive-summary--abstract)
-2. [Problem Statement & Proposed Solution](#2-problem-statement--proposed-solution)
+2. [Legacy System Analysis & Software Re-Engineering Process](#2-legacy-system-analysis--software-re-engineering-process)
 3. [System Architecture](#3-system-architecture)
 4. [Technology Stack & Justification](#4-technology-stack--justification)
-5. [Database Design & Data Models (ER Diagram)](#5-database-design--data-models)
+5. [Database Design & Data Models](#5-database-design--data-models)
 6. [REST API Specifications](#6-rest-api-specifications)
 7. [Core Modules & System Features](#7-core-modules--system-features)
 8. [Workflow & Sequence Diagrams](#8-workflow--sequence-diagrams)
 9. [Installation & Execution Guide](#9-installation--execution-guide)
 10. [Test Cases & Quality Assurance](#10-test-cases--quality-assurance)
-11. [Viva-Voce / Teacher's Oral Defense Q&A](#11-viva-voce--teachers-oral-defense-qa)
-12. [Future Enhancements & Conclusion](#12-future-enhancements--conclusion)
 
 ---
 
@@ -44,7 +42,7 @@ Traditional human resource and payroll management systems in small-to-medium ent
 - Role-based separation of concerns between Administrators and Employees.
 - End-to-end leave application and approval governance.
 - Single-click payroll disbursement and client-side vectorized PDF payslip generation.
-- Responsive, accessible user experience featuring glassmorphic UI aesthetics and real-time Dark/Light theme toggles.
+- Responsive, accessible corporate SaaS user experience featuring clean light-first design and real-time Light/Dark theme switching.
 
 ---
 
@@ -155,7 +153,7 @@ graph TD
 | **Recharts** | Frontend | Data Visualization | Declarative SVG-based charting library integrated seamlessly with React state. |
 | **jsPDF & AutoTable** | Frontend | Document Generator | Client-side vectorized document compilation for pixel-perfect printable payslips. |
 | **Lucide React** | Frontend | UI Icons | Lightweight, consistent SVG iconography. |
-| **React Hot Toast** | Frontend | Notification System | Non-blocking, glassmorphic toast notifications for asynchronous user feedback. |
+| **React Hot Toast** | Frontend | Notification System | Non-blocking corporate toast notifications for asynchronous user feedback. |
 
 ---
 
@@ -384,18 +382,18 @@ sequenceDiagram
     participant API as FastAPI Backend
     participant DB as SQLite (payroll.db)
 
-    Admin->>UI: Clicks "Generate Slip" for Employee
+    Admin->>UI: Clicks "Disburse & Generate" for Employee
     UI->>API: POST /salary/ { employee_id, month, year, amount_paid }
     API->>DB: INSERT into salaries (...)
     DB-->>API: Confirmed commit
     API-->>UI: Return 200 OK
-    UI-->>Admin: Displays record in "Recent Payouts"
+    UI-->>Admin: Displays record in "Historical Payouts & Payslip Archive"
 
-    Admin->>UI: Clicks "PDF" Download button
+    Admin->>UI: Clicks "Download PDF" button
     Note over UI: jsPDF Vector Engine instantiates in Browser memory
     UI->>UI: Construct Header, Metadata & AutoTable Grid
     UI->>UI: Stream Byte Array to Browser File Blob
-    UI-->>Admin: Browser saves "Payslip_Month_Year_EmpID.pdf"
+    UI-->>Admin: Browser saves "Payslip_Month_Year_Employee_Name.pdf"
 ```
 
 ---
@@ -471,8 +469,8 @@ npm run dev
 | **TC-04** | Attendance | Change status from "Present" to "Absent" on same date | Existing record updated in-place (no duplicate rows) | Record modified correctly without row duplication | **PASS** |
 | **TC-05** | Leave | Employee submits leave dates with reason | Request created with status `Pending` | Appears in leave request queue | **PASS** |
 | **TC-06** | Leave | Admin approves pending leave request | PUT request sent; status changes to `Approved` | Badge turns green; action buttons disabled | **PASS** |
-| **TC-07** | Payroll | Admin clicks "Disburse & Generate" | Salary calculated with absent deductions and recorded in `salaries` | Added to Recent Payouts list; duplicate payouts locked | **PASS** |
-| **TC-08** | Payroll | Admin clicks "PDF" download button | Client-side jsPDF script compiles executive corporate payslip | Clean corporate PDF with words and breakdown downloaded | **PASS** |
+| **TC-07** | Payroll | Admin clicks "Disburse & Generate" | Salary calculated with absent deductions and recorded in `salaries` | Added to Historical Payouts list; duplicate payouts locked | **PASS** |
+| **TC-08** | Payroll | Admin clicks "Download PDF" button | Client-side jsPDF script compiles executive corporate payslip | Clean corporate PDF with words and breakdown downloaded | **PASS** |
 | **TC-09** | UI/Theme | Click theme toggle button | `document.body` class toggled between dark and light themes | Complete palette shifts instantly | **PASS** |
 | **TC-10** | Employee | Admin edits employee designation and salary | `PUT /employees/{id}` executed; updates database row | Table and active dashboard budget updated live | **PASS** |
 | **TC-11** | Employee | Admin deletes employee with confirmation | `DELETE /employees/{id}` cascades cleanup across all tables | Removed cleanly without orphan database records | **PASS** |
